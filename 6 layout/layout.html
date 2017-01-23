@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>div layout</title>
+    <style type="text/css">
+        body{
+            margin:0;
+        }
+        div#container{
+            width:100%;
+            height:950px;
+            background-color: burlywood;
+        }
+        div#heading{
+            width:100%;
+            height:100px;
+            background-color: salmon;
+        }
+        div#content_menu{
+            width:30%;
+            height:80%;
+            background-color: #5dfa60;
+            float:left;
+        }
+        div#content_body{
+            width:70%;
+            height:80%;
+            background-color: #fa4df4;
+            float:right;
+        }
+
+        div#content_body{
+            width:100%;
+            height:10%;
+            background-color: #4271fa;
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="heading">head</div>
+        <div id="content_menu">content</div>
+        <div id="content_body">body</div>
+        <div id="footing">foot</div>
+    </div>
+</body>
+</html>
