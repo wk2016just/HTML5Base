@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.indexedDB=window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+        window.IDBTransaction= window.IDBTransaction || window.webkitIDBTransaction ||  window.msIDBTransaction;
+        window.IDBKeyrange=window.IDBKeyrange || window.webkitIDBKeyrange ||window.msIDBKeyrange;
+        window.IDBCursor=  window.IDBCursor ||  window.webkitIDBCursor ||  window.msIDBCursor;
+
+        function VersionUpDate(){
+            var dbName="indexedDBtest";
+            var dbVersion =4;
+            var idb;
+            var dbConnect = indexedDB.open(dbName,dbVersion);
+            dbConnect.onsuccess = function(e){
+                idb = e.target.result;
+                alert(e.target);
+            }
+            dbConnect.onerror = function(){
+                alert("failure");
+            }
+            dbConnect.onupgradeneeded = function(e){
+                idb = e.target.result;
+                var tx = e.target.transaction;
+                var oldVersion = e.oldVersion;
+                var newVersion = e.newVersion;
+                alert("update success"+oldVersion+"---"+newVersion);
+            }
+        }
+
+    </script>
+</head>
+<body>
+<input  type="button" value="update db" onclick="VersionUpDate()"/>
+</body>
+</html>

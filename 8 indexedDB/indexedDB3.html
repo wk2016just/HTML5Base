@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.indexedDB=window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+        window.IDBTransaction= window.IDBTransaction || window.webkitIDBTransaction ||  window.msIDBTransaction;
+        window.IDBKeyrange=window.IDBKeyrange || window.webkitIDBKeyrange ||window.msIDBKeyrange;
+        window.IDBCursor=  window.IDBCursor ||  window.webkitIDBCursor ||  window.msIDBCursor;
+
+        function CreateObjectStore(){
+            var dbName="indexedDBtest";
+            var dbVersion =6;
+            var idb;
+            var dbConnect = indexedDB.open(dbName,dbVersion);
+            dbConnect.onsuccess = function(e){
+                idb = e.target.result;
+                alert("success");
+            }
+            dbConnect.onerror = function(){
+                alert("failure");
+            }
+            dbConnect.onupgradeneeded = function(e){
+                idb = e.target.result;
+                var name = "user";//数据库仓库名称
+                var optionalParameters = { //参数
+                    keyPath:"userid", //路径
+                    autoIncrement:false
+                };
+                //创建仓库对象
+                var store = idb.createObjectStore(name,optionalParameters);
+                alert("ObjectStore success");
+            }
+        }
+    </script>
+</head>
+<body>
+<input  type="button" value="update db" onclick="CreateObjectStore()"/>
+</body>
+</html>
